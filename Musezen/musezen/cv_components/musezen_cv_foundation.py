@@ -20,7 +20,7 @@ class musezen_cv:
     def __init__(
         self,
         model_weight_path=os.path.join(
-            "Musezen", "musezen", "cv_components", "model_weights.pt"
+            "Musezen", "musezen", "cv_components", "model_weights_freezed.pt"
         ),
     ):
         self.model = models.resnet50(pretrained=False)
