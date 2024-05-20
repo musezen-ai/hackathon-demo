@@ -36,7 +36,8 @@ To get started with Musezen:
 
 ## Authors
 
-- [@AOYW](https://github.com/AOYW)
-- [@mittyhainan](https://github.com/mittyhainan)
+- [@AOYW](https://github.com/AOYW): Andy is a data scientist who earned his B.A. in Economics and Data Science, alongside a B.S. in Chemical Biology from UC Berkeley. He also holds an M.A. in Economics from Duke University. During his academic tenure, Andy contributed to several university research groups. Beyond working and observing his two cats in their natural habitat, Andy enjoys exploring diverse cuisines. As an avid photographer, he captures and shares his experiences through his lens.
+
+- [@mittyhainan](https://github.com/mittyhainan): Hainan is a data scientist with an S.M. from Harvard and a B.S. from UCSD. He has experience in diverse projects across different fields, ranging from e-commerce and healthcare to credit risk and business banking. Outside of the office, Hainan often spends his time skiing during the snow season. He enjoys traveling to different places to explore local cultures, hiking, and attending various music festivals (especially EDM).
 
 We hope you enjoy using Musezen as much as we enjoyed creating it. Happy exploring!
