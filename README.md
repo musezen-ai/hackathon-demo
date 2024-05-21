@@ -4,6 +4,14 @@
 
 When you are visiting museums (or "musezens" 👀), have you ever wondered what else you can learn about that one painting where the plaque only writes "Oil on Canvas"? We have! And we always spend a bunch of time looking up information on the phone, which always feels like a very interrupted experience.
 
+## Getting Started
+
+To get started with [Musezen](https://musezen.streamlit.app/):
+
+1. **Upload a Photo** (Optional): Take a picture of a painting and upload it to Musezen for analysis.
+2. **Start a Conversation**: Begin chatting with Musezen about any art-related topics you're interested in.
+3. **Explore and Learn**: Ask follow-up questions for a conversation with Musezen to enhance your understanding and appreciation of art.
+
 ## Features
 
 Musezen is your personal art curator, designed to enhance your museum visits and art discovery experiences. Leveraging the knowledge of the Snowflake Arctic model, Musezen allows you to chat about different art styles and gain deeper insights into artworks. Here's what you can do with Musezen:
@@ -18,21 +26,28 @@ Musezen is your personal art curator, designed to enhance your museum visits and
 
 We are excited about the future of Musezen and have several enhancements planned to make it even more powerful and useful:
 
-- **Web Search Integration**: Enable web search functionality to provide even more comprehensive information about artworks and artists directly within Musezen.
-  
-- **Art Database Connectivity**: Connect to extensive art databases such as the [National Gallery of Art Open Data Program](https://github.com/NationalGalleryOfArt/opendata) and [Artsy](https://www.artsy.net/). This will allow Musezen to pull in a wealth of additional data, enriching the information available to users.
-  
-- **Personalized Recommendations**: Develop features that offer personalized recommendations based on your interests and previous interactions with Musezen, creating a tailored art discovery experience.
-  
-- **Enhanced User Interface**: Improve the user interface for a more intuitive and user-friendly experience, making it easier to navigate and find the information you need.
+- **Art Database Connectivity**: Leveraging high-quality data will unlock the full potential of Arctic, making Snowflake an ideal platform for such applications with close access to both data and models. We plan to start by integrating extensive art databases such as the [National Gallery of Art Open Data Program](https://github.com/NationalGalleryOfArt/opendata) and [The Art Genome Project by Artsy](https://www.artsy.net/categories). Eventually, we aim to implement an easy way to allow smaller venues to set up their own versions of Musezen using their own data. This will make Musezen more context-aware, enriching the user experience no matter where they are.
 
-## Getting Started
+- **Enhanced User Experience**: We plan to improve the user interface to make it more intuitive and user-friendly, ensuring it is easy to navigate and find the information the user needs. We also would love to support audio inputs and outputs to reduce the time needed to look at the device, thus allowing an even smoother experience in the venues. Finally, we would love to continue improve our image classification model to provide more detailed information about the user-presented painting. 
 
-To get started with Musezen:
+## How we built it
 
-1. **Upload a Photo**: Take a picture of a painting and upload it to Musezen for analysis.
-2. **Start a Conversation**: Begin chatting with Musezen about any art-related topics you're interested in.
-3. **Explore and Learn**: Dive into the rich information provided by Musezen to enhance your understanding and appreciation of art.
+We built Musezen using Python with Snowflake Arctic as its core language model. Our goal was to keep the project lightweight, avoiding unnecessary packages, which means we needed to carry more weight developing some infrastructure. We designed an expandable class structure to support integration with different LLMs and to enable future tool use with a fine-tuned Arctic model. On the image classification side, we used ResNet-50 finetuned on the WikiArt style dataset for painting style classification [1][2].
+
+
+## Challenges we ran into
+
+Developing Musezen involved both an image classification component and a generative model component, which required us to work in parallel due to the tight timeframe. Each workstream presented its own challenges. For the image classification model, we had to determine an appropriate level of label granularity—detailed enough to be useful, yet feasible to train to adequate accuracy within the deadline. On the LLM side, we faced the challenge of integrating the classification model's output and providing as much insight as possible in response to user queries.
+
+## What we learned
+
+Tool use is a key ability for language models in order to enhance user interactions and providing comprehensive insights. Working on Musezen highlighted the importance of modular design and the value of integrating various technologies to create a cohesive and efficient system.
+
+## Citations
+
+1. Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. "Deep Residual Learning for Image Recognition." CoRR, abs/1512.03385, 2015. Available at [http://arxiv.org/abs/1512.03385](http://arxiv.org/abs/1512.03385).
+
+2. Wei Ren Tan, Chee Seng Chan, Hernan Aguirre, and Kiyoshi Tanaka. "Improved ArtGAN for Conditional Synthesis of Natural Image and Artwork." IEEE Transactions on Image Processing, vol. 28, no. 1, pp. 394-409, 2019. Available at [https://doi.org/10.1109/TIP.2018.2866698](https://doi.org/10.1109/TIP.2018.2866698).
 
 ## Authors
 
