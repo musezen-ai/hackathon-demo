@@ -12,6 +12,10 @@ To get started with [Musezen](https://musezen.streamlit.app/):
 2. **Start a Conversation**: Begin chatting with Musezen about any art-related topics you're interested in.
 3. **Explore and Learn**: Ask follow-up questions to deepen your understanding and appreciation of art.
 
+<p align="center">
+    <img src="Musezen_Demo_App.png" alt="Musezen Demo App" width="700"/>
+</p>
+
 ## Features
 
 Musezen is your personal art curator, designed to enhance your museum visits and art discovery experiences. Leveraging the Snowflake Arctic model, Musezen allows you to chat about various art styles and gain deeper insights into artworks. Here's what you can do with Musezen:
