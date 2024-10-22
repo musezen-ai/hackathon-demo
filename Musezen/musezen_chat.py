@@ -12,9 +12,9 @@ from musezen.generative_components.tool_artsy import (
 from musezen.cv_components.musezen_cv_foundation import musezen_cv
 
 # Local environment
-import dotenv
+# import dotenv
 
-dotenv.load_dotenv()
+# dotenv.load_dotenv()
 
 #############
 # Constants #
