@@ -1,6 +1,9 @@
 import json
+
 from musezen.generative_components.agent_tools import AgentTool
-from musezen.generative_components.llm_client import LLMClient
+from musezen.generative_components.llm_client_base import LLMClient
+
+from openai.types.chat.chat_completion import ChatCompletion
 
 
 class ChatAgent:
@@ -47,19 +50,44 @@ class ChatAgent:
         self.chat_history.append({"role": "user", "content": input_message})
 
         # Initial request to the language model
-        response: list[str] = self.llm_client.send_message(
+        response: ChatCompletion = self.llm_client.send_message(
             model, self.chat_history, tools=self.tools
         )
+        continue_function_calls = True
 
-        # TODO: function calling for external data sources
+        while continue_function_calls:
 
-        response_message = "".join(response)
-        self.chat_history.append(
-            {
-                "role": "assistant",
-                "content": response_message,
-            }
-        )
+            if isinstance(response, ChatCompletion):
+                response_message = response.choices[0].message.content
+                tool_calls = response.choices[0].message.tool_calls
+
+            # Check if the model wanted to call a function
+            if tool_calls:
+                # Update chat history with the tool calls
+                self.chat_history.append(
+                    {
+                        "role": "assistant",
+                        "content": response_message,
+                        "tool_calls": tool_calls,
+                    }
+                )
+
+                # Call the function and obtain result
+                self.function_calling(tool_calls)
+
+                # Send updated chat history back to the model
+                response = self.llm_client.send_message(
+                    model=model, messages=self.chat_history, tools=self.tools
+                )
+            else:
+                continue_function_calls = False
+                # Update chat history with the response message if no tool calls
+                self.chat_history.append(
+                    {
+                        "role": "assistant",
+                        "content": response_message,
+                    }
+                )
 
         # Return the last computed response message
         return response_message
